@@ -1,53 +1,63 @@
-class tokenRegexes:
-    def __init__(self):
-        self.INTEGER = "INTEGER"
-        self.PLUS = "PLUS"
-        self.MINUS = "MINUS"
-        self.MULTIPLY = "MULTIPLY"
-        self.DIVIDE = "DIVIDE"
-        self.VARIABLE = "VARIABLE"
-        self.STRING = "STRING"
-        self.EQUAL = "EQUAL"
-        self.DOUBLE_EQUAL = "DOUBLE_EQUAL"
-        self.IF = "IF"
-        self.ELSE = "ELSE"
-        self.FOR = "FOR"
-        self.WHILE = "WHILE"
+class TokenRegexes:
+    integer = 11
+    INTEGER = "INTEGER"
+    PLUS = "PLUS"
+    MINUS = "MINUS"
+    MULTIPLY = "MULTIPLY"
+    DIVIDE = "DIVIDE"
+    VARIABLE = "VARIABLE"
+    STRING = "STRING"
+    EQUAL = "EQUAL"
+    DOUBLE_EQUAL = "DOUBLE_EQUAL"
+    IF = "IF"
+    ELSE = "ELSE"
+    FOR = "FOR"
+    WHILE = "WHILE"
 
-        self.TOKEN_REGEXES = {
-            # Data types
-            self.INTEGER: "\d+",
-            self.VARIABLE: "_*\w+_*",
-            self.STRING: "\".*\"|'.*'",
+    TOKEN_REGEXES = {
+        # Data types
+        INTEGER: "\d+",
+        VARIABLE: "_*\w+_*",
+        STRING: "\".*\"|'.*'",
 
-            # Arithmetic Operators
-            self.PLUS: "\+",
-            self.MINUS: "-",
+        # Arithmetic Operators
+        PLUS: "\+",
+        MINUS: "-",
 
-            # Assignments
-            self.EQUAL: "=",
-            self.DOUBLE_EQUAL: "==",
+        # Assignments
+        EQUAL: "=",
+        DOUBLE_EQUAL: "==",
 
-            # Arithmetic Operators
-            self.MULTIPLY: "*",
-            self.DIVIDE: "/",
+        # Arithmetic Operators
+        MULTIPLY: "*",
+        DIVIDE: "/",
 
-            # Conditionals
-            self.IF: "if",
-            self.ELSE: "else",
+        # Conditionals
+        IF: "if",
+        ELSE: "else",
 
-            # Loops
-            self.WHILE: "while",
-            self.FOR: "for"
-        }
+        # Loops
+        WHILE: "while",
+        FOR: "for"
+    }
 
-        self.AVAILABLE_TOKENS = [
-            self.INTEGER,
-            self.PLUS
-        ]
+    AVAILABLE_TOKENS = [
+        INTEGER,
+        PLUS
+    ]
 
-        self.AVAILABLE_TOKEN_REGEXES = { key:value for (key,value) in self.TOKEN_REGEXES.items() if key  in self.AVAILABLE_TOKENS}
+    @classmethod
+    def unavailable_token_regex(cls):
+        return "[^"+("".join(cls.all_available_token_regexes()))+"]"
 
-        self.ALL_AVAILABLE_TOKENS_REGEXES = list(self.AVAILABLE_TOKEN_REGEXES.values())
-        self.UNAVAILABLE_TOKENS_REGEX = "[^"+("".join(self.ALL_AVAILABLE_TOKENS_REGEXES))+"]"
-        self.AVAILABLE_TOKENS_REGEX = "|".join(self.ALL_AVAILABLE_TOKENS_REGEXES)
+    @classmethod
+    def filtered_available_tokens(cls):
+        return { key:value for (key,value) in cls.TOKEN_REGEXES.items() if key  in cls.AVAILABLE_TOKENS}
+
+    @classmethod
+    def all_available_token_regexes(cls):
+        return list(cls.filtered_available_tokens().values())
+
+    @classmethod
+    def available_token_regex(cls):
+        return "|".join(cls.all_available_token_regexes())
