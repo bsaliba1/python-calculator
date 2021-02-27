@@ -1,4 +1,4 @@
-from tokenizer import Tokenizer
+import tokenizer
 
 EXIT = "exit"
 
@@ -6,7 +6,7 @@ EXIT = "exit"
 def evaluate_input(line):
     if line == EXIT:
         quit(1)
-    Tokenizer.tokenize_line(line)
+    tokenizer.tokenize_line(line)
 
 # Take in a line of input from std_in
 def get_input():
