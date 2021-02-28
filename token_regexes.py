@@ -1,47 +1,35 @@
-INTEGER = "INTEGER"
-PLUS = "PLUS"
-MINUS = "MINUS"
-MULTIPLY = "MULTIPLY"
-DIVIDE = "DIVIDE"
-VARIABLE = "VARIABLE"
-STRING = "STRING"
-EQUAL = "EQUAL"
-DOUBLE_EQUAL = "DOUBLE_EQUAL"
-IF = "IF"
-ELSE = "ELSE"
-FOR = "FOR"
-WHILE = "WHILE"
+import token_types
 
 TOKEN_REGEXES = {
     # Data types
-    INTEGER: "\d+",
-    VARIABLE: "_*\w+_*",
-    STRING: "\".*\"|'.*'",
+    token_types.INTEGER: "\d+",
+    token_types.VARIABLE: "_*\w+_*",
+    token_types.STRING: "\".*\"|'.*'",
 
     # Arithmetic Operators
-    PLUS: "\+",
-    MINUS: "-",
+    token_types.PLUS: "\+",
+    token_types.MINUS: "-",
 
     # Assignments
-    EQUAL: "=",
-    DOUBLE_EQUAL: "==",
+    token_types.EQUAL: "=",
+    token_types.DOUBLE_EQUAL: "==",
 
     # Arithmetic Operators
-    MULTIPLY: "*",
-    DIVIDE: "/",
+    token_types.MULTIPLY: "*",
+    token_types.DIVIDE: "/",
 
     # Conditionals
-    IF: "if",
-    ELSE: "else",
+    token_types.IF: "if",
+    token_types.ELSE: "else",
 
     # Loops
-    WHILE: "while",
-    FOR: "for"
+    token_types.WHILE: "while",
+    token_types.FOR: "for"
 }
 
 AVAILABLE_TOKENS = [
-    INTEGER,
-    PLUS
+    token_types.INTEGER,
+    token_types.PLUS
 ]
 
 def unavailable_token_regex():
