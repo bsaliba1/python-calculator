@@ -1,5 +1,5 @@
 import tokenizer
-import evaluator
+from evaluator import Evaluator
 
 EXIT = "exit"
 
@@ -8,6 +8,9 @@ def evaluate_input(line):
     if line == EXIT:
         quit(1)
     tokens = tokenizer.tokenize_line(line)
+    evaluator = Evaluator(tokens)
+    result = evaluator.expr()
+    print(result)
 
 # Take in a line of input from std_in
 def get_input():
