@@ -28,7 +28,7 @@ def __tokenize_strings(token_strings):
     tokens = []
     for token_string in token_strings:
         if token_string.isdigit():
-            tokens.append(Token(token_types.INTEGER, token_string))
+            tokens.append(Token(token_types.INTEGER, int(token_string)))
         elif token_string == '+':
             tokens.append(Token(token_types.PLUS, token_string))
 
