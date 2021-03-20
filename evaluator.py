@@ -6,6 +6,9 @@ class Evaluator:
         self.tokens = tokens
         self.current_token = None
 
+    def error(self):
+        raise Exception('Error parsing input')
+
     def get_next_token(self):
         self.pos += 1
         return self.tokens[self.pos]
